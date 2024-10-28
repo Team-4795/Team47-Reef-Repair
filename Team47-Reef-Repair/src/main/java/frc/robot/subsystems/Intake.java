@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
-    private placeholderMotor1 = new placeholderMotor();
 
     public Intake(){
         // stuff something or other
