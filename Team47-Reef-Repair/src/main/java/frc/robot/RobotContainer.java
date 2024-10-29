@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  Intake shooter = new Intake();
+  Intake intake = new Intake();
   Drive drive = new Drive();
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -50,11 +50,10 @@ public class RobotContainer {
     drive.setDefaultCommand(Commands.run(
       () -> drive.arcadeDrive(m_driverController.getLeftY(), m_driverController.getLeftX()),
       drive));
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-   
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
+    m_driverController.leftTrigger().whileTrue(Commands.startEnd(intake::intake, intake::zero, intake));
+    m_driverController.rightTrigger().whileTrue(Commands.startEnd(intake::shoot, intake::zero, intake));
+    
   }
 
   /**

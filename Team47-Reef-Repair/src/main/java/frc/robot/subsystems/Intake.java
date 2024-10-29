@@ -17,5 +17,8 @@ public class Intake extends SubsystemBase {
     public void intake() {
         leftMotor.set(-0.5);
     }
+    public void zero() {
+        leftMotor.set(0);
+    }
 
 }
