@@ -1,19 +1,21 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
+    PWMTalonSRX leftMotor = new PWMTalonSRX(0);
+    PWMTalonSRX rightMotor = new PWMTalonSRX(0);
 
-    public Intake(){
-        // stuff something or other
-    }
-    
-    public void in(){
-        // rotate placeholderMotor inward to intake 
-        // help idk what motor we are using
+    public Intake() {
+        leftMotor.addFollower(rightMotor);
     }
 
-    public void out(){
-        // rotate placeholderMotor outward
+    public void shoot(){
+        leftMotor.set(0.5);
     }
+    public void intake() {
+        leftMotor.set(-0.5);
+    }
+
 }
