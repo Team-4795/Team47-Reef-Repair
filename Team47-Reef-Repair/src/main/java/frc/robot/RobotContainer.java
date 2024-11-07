@@ -8,6 +8,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   Intake intake = new Intake();
   Drive drive = new Drive();
+  Elevator elevator = new Elevator();
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -53,7 +55,8 @@ public class RobotContainer {
 
     m_driverController.leftTrigger().whileTrue(Commands.startEnd(intake::intake, intake::zero, intake));
     m_driverController.rightTrigger().whileTrue(Commands.startEnd(intake::shoot, intake::zero, intake));
-    
+    m_driverController.povUp().whileTrue(Commands.startEnd(elevator::up, elevator::stop, elevator));
+    m_driverController.povDown().whileTrue(Commands.startEnd(elevator::down, elevator::stop, elevator));
   }
 
   /**
