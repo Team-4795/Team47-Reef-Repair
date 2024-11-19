@@ -57,6 +57,10 @@ public class RobotContainer {
     m_driverController.rightTrigger().whileTrue(Commands.startEnd(intake::shoot, intake::zero, intake));
     m_driverController.povUp().whileTrue(Commands.startEnd(elevator::up, elevator::stop, elevator));
     m_driverController.povDown().whileTrue(Commands.startEnd(elevator::down, elevator::stop, elevator));
+    m_driverController.x().onTrue(Commands.sequence(
+      Commands.startEnd(elevator::up, elevator::stop, elevator).withTimeout(3),
+      Commands.startEnd(intake::intake, intake::zero, intake).withTimeout(3)
+    ));
   }
 
   /**
