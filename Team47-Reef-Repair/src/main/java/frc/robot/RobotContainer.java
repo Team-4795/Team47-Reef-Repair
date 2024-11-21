@@ -59,10 +59,12 @@ public class RobotContainer {
     m_driverController.povDown().whileTrue(Commands.startEnd(elevator::down, elevator::stop, elevator));
     m_driverController.x().onTrue(Commands.sequence(
       Commands.startEnd(elevator::up, elevator::stop, elevator).withTimeout(3),
-      Commands.startEnd(intake::intake, intake::zero, intake).withTimeout(3)
+      Commands.startEnd(intake::intake, intake::zero, intake).withTimeout(3),
+      Commands.startEnd(elevator::down, elevator::stop, elevator).withTimeout(3)
     ));
   }
-
+/** Robotics Notes: 
+ */
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
